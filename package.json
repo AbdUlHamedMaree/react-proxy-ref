@@ -1,6 +1,6 @@
 {
   "name": "@mrii/react-proxy-ref",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "description": "A simple package to create one ref for multiple elements.",
   "keywords": [
