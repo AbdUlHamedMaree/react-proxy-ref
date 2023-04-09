@@ -1,97 +1,56 @@
-# @scandinavia/mock
+# @mrii/react-proxy-ref
 
-A simple package to mock data where is your backend is busy.
+A simple package to create one ref for multiple elements.
+
+if you have a case where you need to create a large/dynamic number of refs, this package is the best fit for it.
+
+it'll exports a hook that will create a proxy object, so you can assign multiple refs to it.
+
+## Installation
+
+```bash
+# yarn
+yarn add @mrii/react-proxy-ref
+
+# npm
+npm i @mrii/react-proxy-ref
+```
 
 ## Usage
 
-```ts
-import * as mock from '@scandinavia/mock';
+```tsx
+import type React from 'react';
+import { useProxyRef } from '@mrii/react-proxy-ref';
 
-// first name.
-const randomMaleFirstName = mock.firstname('male');
-const randomFemaleFirstName = mock.firstname('female');
-const randomFirstName = mock.firstname();
+export const Component: React.FC = () => {
+  const proxyRef = useProxyRef<HTMLInputElement | null>(
+    null /* defaultValue, optional, default to `null` */
+  );
 
-// last name.
-const randomLastName = mock.lastname();
+  const way1 = () => {
+    // use the refs if you know the names
+    proxyRef.email.current?.value;
+    proxyRef.password.current?.value;
+  };
 
-// full name
-const randomMaleFullName = mock.fullname('male');
-const randomFullName = mock.fullname();
+  const way2 = () => {
+    // get all the refs if it's dynamic
+    const refs = Object.values(proxyRef);
 
-// username
-const randomUsername = mock.username();
+    refs.forEach(ref => {
+      ref.current?.value;
+    });
+  };
 
-// word
-const randomWord = mock.word();
-
-// lorem/text
-const randomTextWith100Words = mock.lorem(100);
-
-// phone
-const randomPhone = mock.phone();
-const random12CharPhone = mock.phone(12);
-
-// date
-const rancomDateInTheFuture = mock.date(new Date(), new Date('2200'));
-const rancomDateInThePast = mock.date();
-
-// image
-const randomSquareImageUrl = mock.image(200, 200);
-const randomImageUrl = mock.date();
-
-// avatar
-const randomSmallAvatarUrl = mock.avatar(50);
-const randomAvatarUrl = mock.date();
-
-// number
-const randomNumber = mock.number();
-const randomFloatNumber = mock.number(true);
-const randomNumberFrom10To100 = mock.number(10, 100);
-
-// unique
-const randomID = mock.unique();
-const random4CharID = mock.unique(4);
-
-// pick
-const randomItem = mock.pick('item 1', 'item 2', 'item 3');
-const randomValue = mock.pick(1, 2, 3);
-
-// array
-const randomArrayOfFullNamesLength20 = mock.array(() => mock.fullname(), 20);
-```
-
-this is the basic usage, let's see the real life application.
-
-```ts
-// in your model definition.
-export type Product = {
-  id: string;
-  title: string;
-  description: string;
-  distributer: string;
-  images: string[];
-  price: number;
-  category: 'tablet' | 'laptop' | 'mobile';
-  discount: number;
-  createdAt: Date;
+  return (
+    <>
+      <input ref={proxyRef.email} name='email' />
+      <input ref={proxyRef.password} name='password' />
+    </>
+  );
 };
-
-export const mockProduct = (): Product => ({
-  id: mock.unique(),
-  title: mock.lorem(3),
-  description: mock.lorem(20),
-  distributer: mock.fullname(),
-  images: mock.array(() => mock.image(200, 300), mock.number(1, 3)),
-  price: mock.number(500, 4000),
-  category: mock.pick('tablet', 'laptop', 'mobile'),
-  discount: mock.number(0, 10),
-  createdAt: mock.date(),
-});
-
-// in your products page.
-const products = mock.array(mockProduct, mock.number(10, 30));
-
-// in single product page.
-const product = mockProduct();
 ```
+
+## How it works
+
+it will create a proxy that will return `{ current: defaultValue }` when you'll try to access a key from it, and it will store it in the proxy, so you can access the value later
