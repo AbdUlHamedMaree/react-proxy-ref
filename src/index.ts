@@ -9,6 +9,7 @@ export const useProxyRef = <TRef = null>(defaultValue: TRef = null as TRef) =>
       new Proxy({} as Record<AnyKey, React.MutableRefObject<TRef>>, {
         get: (obj, key) => {
           const value = obj[key];
+
           if (value) return value;
 
           return (obj[key] = {

@@ -52,13 +52,12 @@
     "build": "lbundle",
     "eslint": "eslint .",
     "lint": "concurrently --kill-others-on-fail -n tsc,eslint -c magenta,cyan \"npm run type-check\" \"npm run eslint\"",
-    "lint:fix": "concurrently --kill-others-on-fail -n tsc,eslint -c magenta,cyan \"npm run type-check\" \"npm run eslint --fix\"",
+    "lint:fix": "concurrently --kill-others-on-fail -n tsc,eslint -c magenta,cyan \"npm run type-check\" \"npm run eslint -- --fix\"",
     "prepack": "npm run lint:fix && npm run build",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
     "rollup": "rollup -c --bundleConfigAsCjs",
     "test": "jest",
-    "tsc": "tsc",
-    "type-check": "tsc -p ./tsconfig.eslint.json"
+    "type-check": "tsc -p ./tsconfig.json"
   },
   "devDependencies": {
     "@swc/jest": "^0.2.36",
