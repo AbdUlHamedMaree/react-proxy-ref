@@ -15,8 +15,9 @@
     "utils",
     "utility"
   ],
-  "homepage": "https://github.com/AbdUlHamedMaree/react-proxy-ref",
+  "homepage": "https://github.com/AbdUlHamedMaree/react-proxy-ref#readme",
   "bugs": {
+    "email": "hmidmrii@gmail.com",
     "url": "https://github.com/AbdUlHamedMaree/react-proxy-ref/issues"
   },
   "repository": {
@@ -24,11 +25,10 @@
     "url": "https://github.com/AbdUlHamedMaree/react-proxy-ref.git"
   },
   "license": "MIT",
-  "author": {
-    "name": "Abd Ul-Hameed Maree",
-    "email": "hmidmrii@gmail.com",
-    "url": "https://www.linkedin.com/in/abd-ul-hameed-maree/"
-  },
+  "author": "AbdUlHameed Murie <hmidmrii@gmail.com> (https://www.linkedin.com/in/abd-ul-hameed-maree/)",
+  "contributors": [
+    "AbdUlHameed Murie <hmidmrii@gmail.com> (https://www.linkedin.com/in/abd-ul-hameed-maree/)"
+  ],
   "exports": {
     ".": {
       "default": "./dist/index.js",
