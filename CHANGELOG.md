@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/AbdUlHamedMaree/react-proxy-ref/compare/v1.0.1...v1.0.2) (2024-05-04)
+
+### Bug Fixes
+
+- trigger release ([d82b18c](https://github.com/AbdUlHamedMaree/react-proxy-ref/commit/d82b18c2d76331cfd4597923011cd7ed076a14d5))
+
 ## [1.0.1](https://github.com/AbdUlHamedMaree/react-proxy-ref/compare/v1.0.0...v1.0.1) (2024-05-04)
 
 ### Bug Fixes
