@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import type { MutableRefObject } from 'react';
 import { useState } from 'react';
 
-export type AnyKey = string | number | symbol;
+export type ProxyRefObject<TRef = undefined> = Record<keyof any, MutableRefObject<TRef>>;
 
-export const useProxyRef = <TRef = null>(defaultValue: TRef = null as TRef) =>
-  useState(
+export function useProxyRef<TRef>(defaultValue: TRef): ProxyRefObject<TRef>;
+export function useProxyRef<TRef>(): ProxyRefObject<TRef | undefined>;
+
+export function useProxyRef<TRef>(defaultValue?: TRef) {
+  return useState(
     () =>
-      new Proxy({} as Record<AnyKey, React.MutableRefObject<TRef>>, {
+      new Proxy({} as ProxyRefObject<TRef | undefined>, {
         get: (obj, key) => {
           const value = obj[key];
 
@@ -17,3 +23,4 @@ export const useProxyRef = <TRef = null>(defaultValue: TRef = null as TRef) =>
         },
       })
   )[0];
+}
