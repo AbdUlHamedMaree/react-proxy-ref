@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { MutableRefObject } from 'react';
 import { useState } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ProxyRefObject<TRef = undefined> = Record<keyof any, MutableRefObject<TRef>>;
 
 export function useProxyRef<TRef>(defaultValue: TRef): ProxyRefObject<TRef>;
