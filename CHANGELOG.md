@@ -2,8 +2,6 @@
 
 ### Bug Fixes
 
-- trigger release ([1ea57fc](https://github.com/AbdUlHamedMaree/react-proxy-ref/commit/1ea57fc48d1e45abd64598567b1f101ec009cc54))
-
 # 1.0.0 (2024-05-04)
 
 ### Bug Fixes
